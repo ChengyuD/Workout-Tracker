@@ -3,16 +3,13 @@ const router = require("express").Router();
 
 router.get("/api/workouts", (req, res) => {
 
-    db.Workout.find({}).then(dbWorkout => {
-        dbWorkout.forEach(workout => {
-            var total = 0;
-            workout.exercises.forEach(e => {
-                total += e.duration;
-            });
-            workout.totalDuration = total;
-
-        });
-
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: "$exercises.duration"},
+            }
+        }
+    ]).then(dbWorkout => {
         res.json(dbWorkout);
     }).catch(err => {
         res.json(err);
