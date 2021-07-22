@@ -35,9 +35,12 @@ https://shielded-island-67086.herokuapp.com/
 
 
 ## Screentshot
+Demo-main.PNG
 
+tracker.PNG
 
-
+dashboard.PNG
 
 
 ## Demo
+Fitness Tracker.gif
